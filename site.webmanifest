@@ -1,0 +1,13 @@
+{
+  "name": "TJ Blechman — Portfolio",
+  "short_name": "TJ Blechman",
+  "description": "A portfolio where every project runs live in the page.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#161220",
+  "theme_color": "#161220",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

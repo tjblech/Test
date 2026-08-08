@@ -1,0 +1,91 @@
+/* ============================================================
+   tokens.css — the whole design system in one place.
+   Everything else in this site reads from here.
+   ============================================================ */
+
+:root{
+  /* ---- ground ---------------------------------------------- */
+  --bg:          #161220;
+  --bg-deep:     #100d18;
+  --surface-1:   #1c1727;
+  --surface-2:   #241d31;
+  --surface-3:   #2c2439;
+
+  /* ---- ink ------------------------------------------------- */
+  --ink:         #f2eef7;
+  --ink-2:       #c2b7d2;
+  --ink-3:       #8e8398;
+  --ink-solid:   #221e27;
+  --paper:       #f6f3ec;
+
+  /* ---- accents --------------------------------------------- */
+  --rose:        #e2a9b2;
+  --gold:        #e3c17f;
+  --slate:       #94a6d0;
+  --plum:        #b581c6;
+  --mint:        #8fd0b6;
+
+  --rose-dim:    rgba(226,169,178,.16);
+  --gold-dim:    rgba(227,193,127,.16);
+  --slate-dim:   rgba(148,166,208,.16);
+  --plum-dim:    rgba(181,129,198,.16);
+
+  /* live accent — swapped at runtime as you move through the site */
+  --accent:      var(--rose);
+  --accent-dim:  var(--rose-dim);
+
+  /* ---- edges ----------------------------------------------- */
+  --edge:        rgba(255,255,255,.09);
+  --edge-2:      rgba(255,255,255,.15);
+  --edge-3:      rgba(255,255,255,.26);
+
+  /* ---- type ------------------------------------------------ */
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono:  'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --t-micro:  11px;
+  --t-mono:   12.5px;
+  --t-small:  13.5px;
+  --t-body:   15.5px;
+  --t-lead:   clamp(16px, 1.25vw, 18px);
+  --t-h3:     clamp(19px, 2.1vw, 23px);
+  --t-h2:     clamp(30px, 5.2vw, 52px);
+  --t-h1:     clamp(40px, 9.5vw, 104px);
+
+  --lh-tight: 1.08;
+  --lh-snug:  1.32;
+  --lh-body:  1.66;
+
+  --track-wide: .18em;
+  --track-mid:  .1em;
+
+  /* ---- space ----------------------------------------------- */
+  --s1: 4px;   --s2: 8px;   --s3: 12px;  --s4: 16px;
+  --s5: 24px;  --s6: 32px;  --s7: 48px;  --s8: 64px;
+  --s9: 96px;  --s10: 128px;
+
+  --gutter: clamp(20px, 5vw, 56px);
+  --measure: 62ch;
+  --shell: 1180px;
+
+  /* ---- motion ---------------------------------------------- */
+  --ease:      cubic-bezier(.22,.76,.24,1);
+  --ease-soft: cubic-bezier(.4,0,.2,1);
+  --ease-back: cubic-bezier(.34,1.4,.5,1);
+  --d-fast:  .18s;
+  --d-mid:   .34s;
+  --d-slow:  .7s;
+
+  /* ---- radii + depth --------------------------------------- */
+  --r-sm: 6px;  --r-md: 10px;  --r-lg: 16px;  --r-pill: 999px;
+  --shadow-lift: 0 18px 44px -22px rgba(0,0,0,.8);
+  --shadow-deep: 0 40px 90px -30px rgba(0,0,0,.85);
+}
+
+/* Section accents. Applying one of these classes re-points --accent,
+   which every hover state, focus ring and canvas rig reads from. */
+.accent-rose  { --accent: var(--rose);  --accent-dim: var(--rose-dim);  }
+.accent-gold  { --accent: var(--gold);  --accent-dim: var(--gold-dim);  }
+.accent-slate { --accent: var(--slate); --accent-dim: var(--slate-dim); }
+.accent-plum  { --accent: var(--plum);  --accent-dim: var(--plum-dim);  }

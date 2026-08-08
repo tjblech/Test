@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found — TJ Blechman</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#161220">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/base.css">
+<style>
+  body{
+    min-height: 100vh; min-height: 100svh;
+    display: grid; place-items: center;
+    padding: var(--gutter);
+    text-align: center;
+    overflow: hidden;
+  }
+  .field{ position: fixed; inset: 0; z-index: 0; }
+  .glow{
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(620px 460px at 50% 44%, rgba(226,169,178,.16), transparent 62%);
+  }
+  .box{ position: relative; z-index: 2; max-width: 460px; }
+  .code{
+    font-family: var(--mono);
+    font-size: var(--t-micro);
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: var(--s4);
+  }
+  h1{ font-size: clamp(30px, 7vw, 46px); letter-spacing: -.02em; margin-bottom: var(--s4); }
+  p{ color: var(--ink-2); margin-bottom: var(--s6); }
+  .board{
+    display: grid; grid-template-columns: repeat(8, 1fr);
+    width: 132px; aspect-ratio: 1;
+    margin: 0 auto var(--s6);
+    border-radius: var(--r-sm); overflow: hidden;
+    border: 1px solid var(--edge-2);
+  }
+  .board i{ background: #1d1728; }
+  .board i.l{ background: rgba(181,129,198,.14); }
+  .board i.k{ background: var(--gold); }
+</style>
+</head>
+<body>
+<canvas class="field" id="field" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+
+<div class="box">
+  <p class="code">404 · no such square</p>
+  <div class="board" id="board" aria-hidden="true"></div>
+  <h1>this page wandered off</h1>
+  <p>Whatever you were after isn't here. It may have moved, or it may never have existed.</p>
+  <a class="btn is-primary" href="/">back to the homepage →</a>
+</div>
+
+<script src="/js/core.js"></script>
+<script>
+(function(){
+  // a knight looking for a square that isn't on the board
+  var board = document.getElementById('board'), cells = [];
+  for(var i = 0; i < 64; i++){
+    var c = document.createElement('i');
+    if((Math.floor(i/8) + i%8) % 2 === 0) c.className = 'l';
+    board.appendChild(c); cells.push(c);
+  }
+  var pos = 27;
+  var MOVES = [-17,-15,-10,-6,6,10,15,17];
+  function hop(){
+    cells[pos].classList.remove('k');
+    var tries = 0, next;
+    do{
+      next = pos + MOVES[(Math.random()*8)|0];
+      tries++;
+    }while((next < 0 || next > 63 || Math.abs((next%8) - (pos%8)) > 2) && tries < 30);
+    if(next >= 0 && next <= 63) pos = next;
+    cells[pos].classList.add('k');
+  }
+  cells[pos].classList.add('k');
+  if(!TJ.reduced) setInterval(hop, 620);
+
+  // the same field as the homepage, quieter
+  var cellsF = [];
+  TJ.canvas(document.getElementById('field'), {
+    measure: document.body,
+    init: function(r){
+      cellsF = [];
+      var s = r.w < 620 ? 44 : 36;
+      r.data.s = s;
+      for(var y = 0; y < r.h + s; y += s)
+        for(var x = 0; x < r.w + s; x += s)
+          cellsF.push({ x: x, y: y, seed: Math.random() * 6.283 });
+    },
+    still: function(r){ paint(r, 1); },
+    draw: function(r, t){ paint(r, t); }
+  });
+  function paint(r, t){
+    var ctx = r.ctx, s = r.data.s || 36;
+    ctx.clearRect(0, 0, r.w, r.h);
+    ctx.strokeStyle = 'rgba(241,236,245,0.09)';
+    ctx.lineWidth = 1; ctx.lineCap = 'round';
+    ctx.beginPath();
+    for(var i = 0; i < cellsF.length; i++){
+      var c = cellsF[i];
+      var a = Math.sin(c.x * 0.006 + t * 0.2) + Math.cos(c.y * 0.008 - t * 0.15) + c.seed * 0.14;
+      var ux = Math.cos(a) * s * 0.16, uy = Math.sin(a) * s * 0.16;
+      ctx.moveTo(c.x - ux, c.y - uy); ctx.lineTo(c.x + ux, c.y + uy);
+    }
+    ctx.stroke();
+  }
+})();
+</script>
+</body>
+</html>

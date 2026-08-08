@@ -1,0 +1,190 @@
+/* ============================================================
+   chess.css — the easter egg behind the eyes
+   ============================================================ */
+
+.chess-backdrop{
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: var(--s4);
+  background: rgba(11,8,17,.74);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--d-mid) var(--ease-soft), visibility var(--d-mid);
+}
+.chess-backdrop.is-open{ opacity: 1; visibility: visible; }
+
+.chess-panel{
+  position: relative;
+  width: min(660px, 100%);
+  max-height: calc(100vh - 32px);
+  max-height: calc(100svh - 32px);
+  overflow: auto;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 168px;
+  grid-template-areas:
+    "head head"
+    "board side";
+  gap: var(--s5);
+  padding: var(--s6);
+  border: 1px solid var(--edge-2);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(120% 100% at 0% 0%, rgba(181,129,198,.14), transparent 60%),
+    var(--surface-1);
+  box-shadow: var(--shadow-deep);
+  transform: translateY(14px) scale(.985);
+  transition: transform var(--d-mid) var(--ease-back);
+}
+.chess-backdrop.is-open .chess-panel{ transform: none; }
+
+.chess-head{ grid-area: head; }
+.chess-title{
+  font-family: var(--serif);
+  font-size: 22px;
+  margin: 0 0 4px;
+}
+.chess-status{
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  color: var(--rose);
+  min-height: 1.4em;
+}
+.chess-hint{
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 6px;
+}
+
+.chess-close{
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border: 1px solid var(--edge);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--d-fast) var(--ease), color var(--d-fast) var(--ease);
+}
+.chess-close:hover{ background: rgba(255,255,255,.09); color: var(--ink); }
+
+/* ---- board ------------------------------------------------- */
+.chess-board{
+  grid-area: board;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  aspect-ratio: 1;
+  width: 100%;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  border: 1px solid var(--edge-2);
+}
+
+.sq{
+  position: relative;
+  display: grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-size: clamp(18px, 4.4vw, 30px);
+  line-height: 1;
+  font-family: 'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols 2', sans-serif;
+  transition: background var(--d-fast) var(--ease);
+}
+.sq.light{ background: #ece2ee; }
+.sq.dark { background: #9b7fa8; }
+
+/* Outline the pieces rather than relying on fill colour. Without
+   this, white pieces vanish on light squares. */
+.sq.is-white{
+  color: #fdfbfd;
+  -webkit-text-stroke: 1.1px #34203d;
+  paint-order: stroke fill;
+  text-shadow: 0 1px 2px rgba(30,16,38,.4);
+}
+.sq.is-black{
+  color: #1c1122;
+  -webkit-text-stroke: .9px rgba(255,255,255,.5);
+  paint-order: stroke fill;
+}
+
+.sq.is-selected{ background: var(--gold); }
+.sq.is-check{ background: #d4737e; }
+
+.sq.is-target::after,
+.sq.is-capture::after{
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.sq.is-target::after{
+  width: 26%; aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(34,20,40,.42);
+}
+.sq.is-capture::after{
+  inset: 6%;
+  border-radius: 50%;
+  border: 3px solid rgba(34,20,40,.42);
+}
+
+.sq.is-cursor{ box-shadow: inset 0 0 0 2px var(--plum); }
+.sq:focus-visible{ outline: none; box-shadow: inset 0 0 0 3px var(--gold); z-index: 1; }
+
+/* ---- side rail --------------------------------------------- */
+.chess-side{
+  grid-area: side;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  min-width: 0;
+}
+
+.chess-moves{
+  flex: 1;
+  min-height: 120px;
+  max-height: 260px;
+  overflow-y: auto;
+  margin: 0;
+  padding: var(--s3);
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.9;
+  color: var(--ink-2);
+  background: rgba(0,0,0,.24);
+  border: 1px solid var(--edge);
+  border-radius: var(--r-sm);
+  scrollbar-width: thin;
+}
+.chess-moves li{ display: grid; grid-template-columns: 26px 1fr 1fr; gap: 4px; }
+.chess-moves .n{ color: var(--ink-3); }
+.chess-moves .m{ color: var(--ink); }
+
+.chess-actions{ display: flex; gap: var(--s2); flex-wrap: wrap; }
+.chess-actions .btn{ padding: 8px 14px; font-size: var(--t-mono); }
+.chess-actions .btn[disabled]{ opacity: .4; pointer-events: none; }
+
+@media (max-width: 620px){
+  .chess-panel{
+    grid-template-columns: 1fr;
+    grid-template-areas: "head" "board" "side";
+    padding: var(--s5);
+    gap: var(--s4);
+  }
+  .chess-moves{ max-height: 96px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .chess-backdrop, .chess-panel{ transition: opacity .2s linear; transform: none; }
+}

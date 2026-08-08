@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TJ Blechman — builds things, mostly software</title>
+<meta name="description" content="TJ Blechman is a computer science and business student at Northeastern. A portfolio where every project runs live in the page instead of sitting in a screenshot.">
+<meta name="theme-color" content="#161220">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://tjblech.github.io/">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TJ Blechman">
+<meta property="og:title" content="TJ Blechman — builds things, mostly software">
+<meta property="og:description" content="A portfolio where every project runs live in the page: a pipeline you can push events through, a planner that parses plain English, a pool table with real physics.">
+<meta property="og:url" content="https://tjblech.github.io/">
+<meta property="og:image" content="https://tjblech.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TJ Blechman — computer science and business at Northeastern">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TJ Blechman — builds things, mostly software">
+<meta name="twitter:description" content="A portfolio where every project runs live in the page instead of sitting in a screenshot.">
+<meta name="twitter:image" content="https://tjblech.github.io/og-image.png">
+
+<link rel="preload" href="fonts/fraunces-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-wght.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/chess.css">
+<link rel="stylesheet" href="css/work.css">
+<link rel="stylesheet" href="css/rigs.css">
+<link rel="stylesheet" href="css/about.css">
+<link rel="stylesheet" href="css/contact.css">
+</head>
+
+<body>
+<a class="skip-link" href="#work">Skip to the work</a>
+
+<div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+
+<nav class="nav accent-rose" id="nav" aria-label="Sections">
+  <a class="nav-mark" href="#hero" aria-label="Back to top">TJ</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#work"    data-section="work">work</a>
+    <a class="nav-link" href="#about"   data-section="about">about</a>
+    <a class="nav-link" href="#contact" data-section="contact">contact</a>
+    <a class="nav-link" href="resume.html" target="_blank" rel="noopener">resume</a>
+  </div>
+  <button class="nav-key" id="paletteOpen" type="button" aria-haspopup="dialog">
+    <kbd id="navKey">/</kbd> jump
+  </button>
+</nav>
+
+<main>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero" id="hero">
+  <canvas class="hero-field" id="heroField" aria-hidden="true"></canvas>
+  <div class="hero-vignette" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="hero-eyebrow" id="heroEyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        Northeastern · CS + Business · Boston
+      </p>
+
+      <h1 class="hero-line">
+        <span class="sr-only">Hi, I’m Tory Blechman. Most people call me T.J.</span>
+        <span class="hero-typed" aria-hidden="true"><span id="heroPrefix"></span><span id="heroName"></span><span class="hero-caret" id="heroCaret"></span></span>
+      </h1>
+
+      <p class="hero-tagline" id="heroTagline">
+        I build things: <b>web software</b>, a bracket manager my pool league actually uses,
+        and lately an <b>ebike</b> out of a mountain bike. Studying computer science and
+        business, aimed at <b>startups</b>.
+      </p>
+
+      <div class="hero-actions" id="heroActions">
+        <a class="btn is-primary" href="#work">see the work</a>
+        <a class="btn" href="resume.html" target="_blank" rel="noopener">resume</a>
+        <a class="btn" href="#contact">get in touch</a>
+      </div>
+    </div>
+
+    <div class="hero-face">
+      <button class="eyes" id="heroEyes" type="button" aria-label="Poke the eyes — opens a game of chess">
+        <span class="eye"><span class="eye-ball"><span class="eye-pupil"></span><span class="eye-glint"></span></span></span>
+        <span class="eye"><span class="eye-ball"><span class="eye-pupil"></span><span class="eye-glint"></span></span></span>
+      </button>
+      <div class="eyes-nudge" id="heroNudge" aria-hidden="true">
+        <svg width="40" height="26" viewBox="0 0 40 26" fill="none">
+          <path class="squiggle" d="M37 3C29 5 17 8 9 14C5 17 3 20 4 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M2 17C3 20 4 22 5 23M10 21C8 22 6 23 4 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>psst — click me</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cue" id="heroCue">
+    <a href="#work">
+      <span class="cue-track" aria-hidden="true"></span>
+      six projects, all running live
+    </a>
+    <span class="hero-stat" id="heroStat"></span>
+  </div>
+</header>
+
+<!-- ==================== WORK ==================== -->
+<section class="section work accent-slate" id="work" aria-labelledby="workHeadingSR">
+  <div class="wash" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="rule"></div>
+
+  <div class="shell">
+    <div class="work-head" id="workHead" data-reveal="rise">
+      <div class="work-head-row">
+        <div>
+          <span class="eyebrow"><span aria-hidden="true" id="workEyebrow">selected work</span></span>
+          <h2 class="section-title">
+            <span class="sr-only" id="workHeadingSR">Selected work: things I’ve built</span>
+            <span aria-hidden="true" id="workHeading">things i’ve built</span>
+          </h2>
+        </div>
+        <p class="work-thesis">
+          None of these are screenshots. Each one loads a <b>working piece</b> of the
+          real project, running here in the page. Poke at them.
+        </p>
+      </div>
+    </div>
+
+    <div class="bench" id="bench" data-reveal="rise">
+      <div class="bench-chrome">
+        <span class="bench-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="bench-path">~/bench</span>
+        <span class="bench-count" id="benchCount"></span>
+      </div>
+
+      <div class="bench-body">
+        <div class="bench-rail" id="benchRail" role="tablist" aria-orientation="vertical" aria-label="Projects">
+          <p class="rail-label">projects</p>
+        </div>
+
+        <div class="bench-panel" id="benchPanel" role="tabpanel" tabindex="0" aria-label="Project detail">
+          <div class="panel-cmdrow">
+            <p class="panel-cmd" id="benchCmd"></p>
+            <p class="rig-hint" id="rigHint"><i aria-hidden="true"></i><span></span></p>
+          </div>
+
+          <div class="rig-stage" id="rigStage"></div>
+
+          <div class="panel-body" id="benchBody">
+            <h3 class="panel-title" id="benchTitle"></h3>
+            <p class="panel-blurb" id="benchBlurb"></p>
+            <div class="panel-note" id="benchNote"></div>
+            <div class="panel-foot">
+              <div class="panel-tags" id="benchTags"></div>
+              <div class="panel-links" id="benchLinks"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section about accent-gold" id="about" aria-labelledby="aboutHeadingSR">
+  <div class="wash" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="rule"></div>
+
+  <div class="shell">
+    <div class="about-head" id="aboutHead" data-reveal="rise">
+      <span class="eyebrow"><span aria-hidden="true" id="aboutEyebrow">about</span></span>
+      <h2 class="section-title">
+        <span class="sr-only" id="aboutHeadingSR">About me</span>
+        <span aria-hidden="true" id="aboutHeading">a bit more about me</span>
+      </h2>
+      <p class="about-story">
+        I’ve had my head buried in a screen for as long as I can remember, mostly games,
+        mostly just poking at how things worked. At some point I realised I could
+        <b>build the things I was obsessed with</b>, and that turned into computer science.
+        Everything on this page came out of that same habit: find something that annoys me,
+        then find out what it takes to fix it.
+      </p>
+    </div>
+
+    <div class="about-grid">
+
+      <div class="panel col-7" data-reveal="rise">
+        <p class="panel-label">what i'm aiming at</p>
+        <div class="alloc">
+          <div class="alloc-row" style="--target:100%; --bar:var(--gold)" data-reveal="fade">
+            <div class="alloc-top"><span class="alloc-name">Startups</span><span class="alloc-pct">first choice</span></div>
+            <div class="alloc-track"><div class="alloc-fill"></div></div>
+            <p class="alloc-note">The main goal: building something of my own, or getting in early on someone else’s.</p>
+          </div>
+          <div class="alloc-row" style="--target:68%; --bar:var(--rose)" data-reveal="fade">
+            <div class="alloc-top"><span class="alloc-name">Software Engineering</span><span class="alloc-pct">reliable path</span></div>
+            <div class="alloc-track"><div class="alloc-fill"></div></div>
+            <p class="alloc-note">Where I’d land happily if the startup thing takes longer than I’d like.</p>
+          </div>
+          <div class="alloc-row" style="--target:40%; --bar:var(--slate)" data-reveal="fade">
+            <div class="alloc-top"><span class="alloc-name">Quant</span><span class="alloc-pct">the backup</span></div>
+            <div class="alloc-track"><div class="alloc-fill"></div></div>
+            <p class="alloc-note">If I end up wanting more maths and less ambiguity than a product gives you.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel col-5" data-reveal="rise">
+        <p class="panel-label">how i think</p>
+        <div class="think">
+          <div class="knight-wrap">
+            <canvas id="knightCanvas" role="img" aria-label="A knight’s tour being solved: 64 squares, each visited once"></canvas>
+            <p class="knight-cap" id="knightCap">knight’s tour</p>
+          </div>
+          <div>
+            <p class="think-text">
+              That board is solving an actual knight’s tour, live, with Warnsdorff's rule.
+              Sixty-four squares, each one visited exactly once.
+            </p>
+            <p class="think-text">
+              I like problems you can’t put down until they click. Chess especially, which
+              is why there's a whole game hiding behind the eyes at the top of this page.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel col-6" data-reveal="rise">
+        <p class="panel-label">currently</p>
+        <p class="now-line">
+          Transferring into <b>Northeastern</b> as a junior this coming semester for a
+          B.S. in Computer Science and Business Administration, graduating <b>2028</b>.
+          Coming from computer engineering coursework at URI.
+        </p>
+        <div class="stack-row">
+          <span class="stack-label">know</span>
+          <span class="chip">C++</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span>
+          <span class="chip">React</span><span class="chip">Supabase</span><span class="chip">Vercel</span>
+          <span class="chip">Cloudflare</span><span class="chip">Assembly</span>
+        </div>
+        <div class="stack-row">
+          <span class="stack-label">learning</span>
+          <span class="chip is-learning">Python</span>
+          <span class="chip is-learning">SQL</span>
+        </div>
+      </div>
+
+      <div class="panel col-6" data-reveal="rise">
+        <p class="panel-label">off the clock</p>
+        <dl class="evidence">
+          <div class="evidence-item">
+            <dt>Billiards</dt>
+            <dd>Seven tournament wins at my club, and running the weekly ladder. It’s also why the bracket software exists.</dd>
+          </div>
+          <div class="evidence-item">
+            <dt>Saxophone &amp; guitar</dt>
+            <dd>Alto sax, picked for regional honours band. Guitar self-taught, about ten years in.</dd>
+          </div>
+          <div class="evidence-item">
+            <dt>Chess</dt>
+            <dd>Enough to be annoyed by an engine that can’t castle, so this one can.</dd>
+          </div>
+          <div class="evidence-item is-quiet">
+            <dt>Also</dt>
+            <dd>Basketball, hiking, reading, documentaries, and more video games than I’ll admit to.</dd>
+          </div>
+        </dl>
+        <p class="about-aside">Usually with a pair of HiFiMan Arya Stealths on.</p>
+      </div>
+
+    </div>
+
+    <div class="about-links" data-reveal="rise">
+      <a class="btn" href="https://github.com/tjblech" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      <a class="btn" href="https://www.linkedin.com/in/tj-blechman" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a class="btn" href="resume.html" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="section contact accent-rose" id="contact" aria-labelledby="contactHeadingSR">
+  <canvas class="contact-field" id="contactField" aria-hidden="true"></canvas>
+  <div class="wash" aria-hidden="true"></div>
+
+  <div class="shell" id="contactWrap" data-reveal="rise">
+    <span class="eyebrow"><span aria-hidden="true" id="contactEyebrow">get in touch</span></span>
+    <h2 class="section-title">
+      <span class="sr-only" id="contactHeadingSR">Get in touch</span>
+      <span aria-hidden="true" id="contactHeading">let’s talk</span>
+    </h2>
+    <p class="contact-intro">
+      Co-ops, internships, or someone who needs a thing built. I answer everything.
+    </p>
+
+    <a class="mail" id="contactMail" href="mailto:tjblech@gmail.com">tjblech@gmail.com</a>
+    <button class="mail-copy" id="contactCopy" type="button">copy address</button>
+
+    <div class="contact-links">
+      <a class="btn" href="https://github.com/tjblech" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      <a class="btn" href="https://www.linkedin.com/in/tj-blechman" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <p class="contact-meta"><span class="pip" aria-hidden="true"></span>Boston &amp; Rhode Island · open to co-op and internship roles</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-mark">TJ Blechman · <span id="footYear"></span></p>
+      <p class="footer-sub">Designed and built by hand. No frameworks.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#work">work</a>
+      <a href="#about">about</a>
+      <a href="#contact">contact</a>
+      <a href="resume.html" target="_blank" rel="noopener">resume</a>
+      <a href="https://github.com/tjblech" target="_blank" rel="noopener noreferrer">github</a>
+      <a href="https://www.linkedin.com/in/tj-blechman" target="_blank" rel="noopener noreferrer">linkedin</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ==================== CHESS ==================== -->
+<div class="chess-backdrop" id="chessBackdrop" role="dialog" aria-modal="true" aria-labelledby="chessTitle">
+  <div class="chess-panel">
+    <button class="chess-close" id="chessClose" type="button" aria-label="Close chess">×</button>
+    <div class="chess-head">
+      <h2 class="chess-title" id="chessTitle">Chess</h2>
+      <p class="chess-status" id="chessStatus" role="status" aria-live="polite">you are white. your move.</p>
+      <p class="chess-hint">arrow keys to move, enter to select, esc to close</p>
+    </div>
+    <div class="chess-board" id="chessBoard" role="group" aria-label="Chess board"></div>
+    <div class="chess-side">
+      <ol class="chess-moves" id="chessMoves" aria-label="Move list"></ol>
+      <div class="chess-actions">
+        <button class="btn" id="chessUndo" type="button">undo</button>
+        <button class="btn" id="chessReset" type="button">new game</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PALETTE ==================== -->
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Jump to anything">
+  <div class="palette-box">
+    <div class="palette-field">
+      <span class="prompt" aria-hidden="true">›</span>
+      <input class="palette-input" id="paletteInput" type="text" role="combobox"
+             aria-expanded="true" aria-controls="paletteList" aria-autocomplete="list"
+             autocomplete="off" spellcheck="false" placeholder="jump to a project, a section, anywhere…">
+    </div>
+    <ul class="palette-list" id="paletteList" role="listbox" aria-label="Results"></ul>
+    <div class="palette-foot">
+      <span>↑↓ move</span><span>enter to open</span><span>esc to close</span>
+    </div>
+  </div>
+</div>
+
+<script src="js/core.js"></script>
+<script src="js/rigs.js"></script>
+<script src="js/hero.js"></script>
+<script src="js/chess.js"></script>
+<script src="js/work.js"></script>
+<script src="js/about.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/shell.js"></script>
+</body>
+</html>

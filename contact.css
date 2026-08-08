@@ -1,0 +1,159 @@
+/* ============================================================
+   contact.css — the bookend
+   The hero field flows freely. This one points at one thing.
+   ============================================================ */
+
+.contact{
+  position: relative;
+  background: var(--bg);
+  --accent: var(--rose);
+  --accent-dim: var(--rose-dim);
+  overflow: hidden;
+  text-align: center;
+}
+.contact-field{ position: absolute; inset: 0; z-index: 0; }
+.contact .wash{
+  z-index: 1;
+  background: radial-gradient(620px 460px at 50% 46%, rgba(226,169,178,.15), transparent 66%);
+}
+
+/* The converging field is lovely but it runs straight through the
+   text. This scrim buys the copy its contrast back. */
+.contact .shell{
+  max-width: 720px;
+  padding: clamp(20px, 4vh, 40px) clamp(16px, 4vw, 48px);
+}
+.contact .shell::before{
+  content: "";
+  position: absolute;
+  inset: -6% -8%;
+  z-index: -1;
+  background: radial-gradient(60% 52% at 50% 46%,
+    rgba(22,18,32,.94) 0%, rgba(22,18,32,.82) 46%, transparent 78%);
+  pointer-events: none;
+}
+
+.contact .eyebrow{ justify-content: center; }
+.contact-intro{
+  font-size: var(--t-lead);
+  color: var(--ink-2);
+  max-width: 46ch;
+  margin: 0 auto clamp(34px, 5vh, 52px);
+}
+
+/* ---- the email --------------------------------------------- */
+.mail{
+  position: relative;
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(24px, 5.4vw, 46px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 4px 2px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.mail::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform .5s var(--ease);
+}
+.mail:hover::after,
+.mail:focus-visible::after{ transform: scaleX(1); }
+
+.mail-copy{
+  display: block;
+  width: fit-content;
+  margin: 12px auto 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--ink-3);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color var(--d-fast) var(--ease);
+}
+.mail-copy:hover{ color: var(--accent); }
+.mail-copy.is-done{ color: var(--mint); }
+
+.contact-links{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  margin-top: clamp(34px, 5vh, 50px);
+}
+
+.contact-meta{
+  margin-top: clamp(34px, 5vh, 48px);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: .04em;
+  color: var(--ink-3);
+}
+.contact-meta .pip{
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+  margin-right: 8px;
+  vertical-align: middle;
+  animation: beacon 3s var(--ease-soft) infinite;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer{
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--edge);
+  padding: var(--s7) var(--gutter);
+  background: var(--bg-deep);
+}
+.footer-inner{
+  max-width: var(--shell);
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s5);
+  flex-wrap: wrap;
+}
+.footer-mark{
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.footer-sub{
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+.footer-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s4);
+  font-family: var(--mono);
+  font-size: 11.5px;
+}
+.footer-links a{
+  color: var(--ink-3);
+  text-decoration: none;
+  transition: color var(--d-fast) var(--ease);
+}
+.footer-links a:hover{ color: var(--rose); }
+
+@media (prefers-reduced-motion: reduce){
+  .contact-meta .pip{ animation: none; }
+}

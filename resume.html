@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TJ Blechman — Resume</title>
+<meta name="description" content="Resume of TJ Blechman, computer science and business student at Northeastern University.">
+<link rel="canonical" href="https://tjblech.github.io/resume.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f6f3ec">
+<link rel="preload" href="fonts/inter-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<style>
+:root{
+  --ink:#221e27;
+  --muted:#5f5768;
+  --faint:#8b8394;
+  --rule:#e2dce6;
+  --accent:#6b4570;
+  --paper:#ffffff;
+}
+*{ box-sizing:border-box; }
+
+html{ background:#efe9f0; }
+body{
+  margin:0;
+  padding:34px 20px 70px;
+  color:var(--ink);
+  font-family:'Inter',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  font-size:13.6px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* screen-only bar back to the site */
+.topbar{
+  max-width:820px;
+  margin:0 auto 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11.5px;
+}
+.topbar a{
+  color:var(--accent);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .2s ease;
+}
+.topbar a:hover{ border-color:var(--accent); }
+.topbar .print{
+  border:1px solid var(--rule);
+  background:var(--paper);
+  color:var(--muted);
+  border-radius:999px;
+  padding:6px 14px;
+  cursor:pointer;
+  font:inherit;
+}
+.topbar .print:hover{ color:var(--accent); border-color:var(--accent); }
+
+.sheet{
+  max-width:820px;
+  margin:0 auto;
+  background:var(--paper);
+  padding:52px 56px 58px;
+  border-radius:4px;
+  box-shadow:0 18px 50px -28px rgba(40,24,48,.5);
+}
+
+/* ---- masthead ---- */
+.name{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:600;
+  font-size:33px;
+  letter-spacing:-.02em;
+  margin:0 0 5px;
+}
+.contact{
+  color:var(--muted);
+  font-size:12.4px;
+  margin:0 0 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px 12px;
+}
+.contact a{ color:var(--muted); text-decoration:none; }
+.contact a:hover{ color:var(--accent); }
+
+.summary{
+  margin:0 0 4px;
+  padding:14px 16px;
+  background:#faf7fb;
+  border-left:2px solid var(--accent);
+  border-radius:0 4px 4px 0;
+  font-size:13.4px;
+}
+
+/* ---- sections ---- */
+h2{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.5px;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:26px 0 11px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--rule);
+}
+
+.entry{ margin-bottom:13px; break-inside:avoid; }
+.entry:last-child{ margin-bottom:0; }
+.entry-top{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+}
+.entry-title{ font-weight:600; font-size:14.2px; }
+.entry-date{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  color:var(--faint);
+  font-size:11px;
+  white-space:nowrap;
+  flex:0 0 auto;
+}
+.entry-sub{ color:var(--muted); font-size:12.6px; margin-top:1px; }
+.entry-meta{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  color:var(--faint);
+  font-size:11px;
+  margin-top:2px;
+}
+.coursework{ color:var(--faint); font-size:12.2px; margin-top:4px; }
+
+ul.bullets{ margin:5px 0 0; padding-left:17px; }
+ul.bullets li{ margin-bottom:3px; }
+ul.bullets li::marker{ color:var(--accent); }
+
+.skills-line{ margin:0 0 5px; }
+.skills-line .label{ font-weight:600; }
+.learning{ color:var(--muted); font-style:italic; font-size:12.6px; margin-top:7px; }
+
+.foot{
+  max-width:820px;
+  margin:18px auto 0;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;
+  color:var(--faint);
+  text-align:center;
+}
+
+@media (max-width:640px){
+  body{ padding:20px 12px 50px; }
+  .sheet{ padding:32px 24px 38px; }
+  .entry-top{ flex-direction:column; gap:1px; }
+}
+
+/* ---- print ---- */
+@media print{
+  html,body{ background:#fff; }
+  body{ padding:0; font-size:10.6pt; line-height:1.42; }
+  .topbar,.foot{ display:none !important; }
+  .sheet{
+    max-width:none;
+    padding:0;
+    box-shadow:none;
+    border-radius:0;
+  }
+  .summary{ background:none; padding:0 0 0 12px; }
+  h2{ margin:16px 0 8px; }
+  a{ color:inherit; text-decoration:none; }
+  @page{ margin:0.5in; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html">← back to the site</a>
+  <button class="print" type="button" onclick="window.print()">print / save as PDF</button>
+</div>
+
+<main class="sheet">
+  <h1 class="name">TJ Blechman</h1>
+  <p class="contact">
+    <span>Wakefield, RI</span><span>·</span>
+    <span>(401) 369-4492</span><span>·</span>
+    <a href="mailto:tjblech@gmail.com">tjblech@gmail.com</a><span>·</span>
+    <a href="https://github.com/tjblech" target="_blank" rel="noopener">github.com/tjblech</a><span>·</span>
+    <a href="https://www.linkedin.com/in/tj-blechman" target="_blank" rel="noopener">linkedin.com/in/tj-blechman</a>
+  </p>
+
+  <p class="summary">Computer science and business student transferring to Northeastern University with a computer engineering foundation and hands-on experience shipping full-stack web products end-to-end, from architecture to deployment. Looking to join an early-stage startup team or a software engineering role where I can build things that ship fast.</p>
+
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Northeastern University — B.S. Computer Science and Business Administration (Transfer)</span>
+      <span class="entry-date">Expected May 2028</span>
+    </div>
+    <div class="entry-sub">Boston, MA · Incoming Fall 2026</div>
+  </div>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">University of Rhode Island — Computer Engineering coursework</span>
+      <span class="entry-date">2024 – 2026</span>
+    </div>
+    <div class="entry-sub">Kingston, RI · GPA: 3.80</div>
+    <div class="coursework">Relevant coursework: Calculus I–II, Multivariable Calculus, Linear Algebra, Differential Equations, Physics I–II (with Labs), Digital Circuit Design, Linear Circuit Theory (with Lab), Intro to Computer Systems, Programming Fundamentals</div>
+  </div>
+
+  <h2>Projects</h2>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Common Ground</span>
+      <span class="entry-date">Dec 2025 – Present</span>
+    </div>
+    <div class="entry-meta">HTML, CSS, JavaScript, Google Apps Script</div>
+    <ul class="bullets">
+      <li>Built a resource hub centralizing legal, healthcare, and community resources for underserved populations, with an automated pipeline routing Google Form submissions through Sheets approval to a public calendar</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Measured From Here</span>
+      <span class="entry-date">2026</span>
+    </div>
+    <div class="entry-meta">JavaScript, no dependencies</div>
+    <ul class="bullets">
+      <li>Built two logarithmic scroll experiences spanning distance and time, powered by a custom collision solver that keeps content cards from overlapping at any viewport size, verified by 516 passing test assertions; live at tjblech.github.io/Measured-From-Here</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Runway</span>
+      <span class="entry-date">2026 – Present</span>
+    </div>
+    <div class="entry-meta">JavaScript, Supabase</div>
+    <ul class="bullets">
+      <li>Built a single-file personal planner with a natural-language quick-add parser, a command palette, and cross-device sync through Supabase with built-in conflict resolution; live at tjblech.github.io/Runway</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Billiards Tournament Manager</span>
+      <span class="entry-date">Feb 2026 – Present</span>
+    </div>
+    <div class="entry-meta">React, TypeScript, Vite, Supabase, GitHub Actions</div>
+    <ul class="bullets">
+      <li>Built a live tournament bracket manager for pool leagues with real-time two-table queueing, single/double-elimination logic, and a public QR-accessible bracket view; deployed via GitHub Actions to GitHub Pages at tjblech.github.io/Billiards</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Campaign Website — School Committee Race</span>
+      <span class="entry-date">2026</span>
+    </div>
+    <div class="entry-meta">Next.js, TypeScript, Tailwind CSS</div>
+    <ul class="bullets">
+      <li>Designed and deployed a full responsive campaign website end-to-end for a local candidate, owning visual direction, information architecture, and deployment</li>
+    </ul>
+  </div>
+
+  <h2>Skills</h2>
+  <p class="skills-line"><span class="label">Languages:</span> C++, TypeScript, JavaScript, MATLAB</p>
+  <p class="skills-line"><span class="label">Frameworks &amp; Tools:</span> React, Vite, Supabase, Cloudflare, Vercel, GitHub Actions, Google APIs</p>
+  <p class="skills-line"><span class="label">Hardware:</span> Microcontrollers, oscilloscopes, Multisim, basic CAD</p>
+  <p class="learning">Currently learning: Python, SQL</p>
+
+  <h2>Leadership &amp; Activities</h2>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Billiards Club at URI</span>
+      <span class="entry-date">Sep 2024 – Present</span>
+    </div>
+    <div class="entry-meta">Candidate for President</div>
+    <ul class="bullets">
+      <li>Won 7 tournaments and consistently placed among the club's top competitive players</li>
+      <li>Organizing weekly tournaments as a candidate for club president</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Rhody Racers — Formula SAE</span>
+      <span class="entry-date">Dec 2025 – Present</span>
+    </div>
+    <div class="entry-meta">Incoming Member, Controls &amp; Telemetry</div>
+    <ul class="bullets">
+      <li>Preparing to support vehicle testing and data acquisition on the controls/telemetry subteam</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Mountain Bike → Ebike Conversion</span>
+      <span class="entry-date">2026 – Present</span>
+    </div>
+    <div class="entry-meta">Personal Project</div>
+    <ul class="bullets">
+      <li>Converting a mountain bike into an ebike, working through motor, battery, and controller integration</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry-top">
+      <span class="entry-title">Music</span>
+      <span class="entry-date">2012 – Present</span>
+    </div>
+    <div class="entry-meta">Saxophone &amp; Guitar</div>
+    <ul class="bullets">
+      <li>Alto saxophonist selected for regional honors band; self-taught guitarist with 10+ years of experience</li>
+    </ul>
+  </div>
+
+  <h2>Awards</h2>
+  <ul class="bullets">
+    <li>Multiple URI Billiards Tournament wins (2024–2026)</li>
+    <li>1st Place, State HOSA Competition — researched and presented on medical applications of Vitamin C</li>
+  </ul>
+</main>
+
+<p class="foot">The interactive version lives at <a href="index.html" style="color:var(--accent)">tjblech.github.io</a></p>
+
+</body>
+</html>
